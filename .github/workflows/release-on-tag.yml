@@ -1,0 +1,35 @@
+name: Create Release on Tag
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Dutch Edition ${{ github.ref_name }}
+          body: |
+            ## Zeven Kinderen, Duizend Verhalen: Een Leven Geleid door God (NL)
+            
+            Nederlandse editie van het boek - ${{ github.ref_name }}
+            
+            **Let op:** Upload het PDF-bestand handmatig naar deze release via de GitHub interface.
+            
+            ---
+            
+            **Note:** Please manually upload the PDF file to this release via the GitHub interface.
+          draft: true
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

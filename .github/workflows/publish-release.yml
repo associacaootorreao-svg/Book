@@ -1,0 +1,45 @@
+name: Publish Book Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version number (e.g., v1.0.0)'
+        required: true
+        type: string
+      pdf_url:
+        description: 'URL to the PDF file to include in the release'
+        required: true
+        type: string
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Download PDF
+        run: |
+          curl -L -o "Zeven-Kinderen-Duizend-Verhalen-Een-Leven-Geleid-door-God-NL.pdf" "${{ inputs.pdf_url }}"
+      
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ inputs.version }}
+          name: Dutch Edition ${{ inputs.version }}
+          body: |
+            ## Zeven Kinderen, Duizend Verhalen: Een Leven Geleid door God (NL)
+            
+            Nederlandse editie van het boek.
+            
+            **Download:** Klik op de PDF hieronder om het boek te downloaden.
+          files: |
+            Zeven-Kinderen-Duizend-Verhalen-Een-Leven-Geleid-door-God-NL.pdf
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

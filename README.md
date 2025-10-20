@@ -2,6 +2,9 @@
 
 ## Zeven Kinderen, Duizend Verhalen: Een Leven Geleid door God (NL)
 
+> 📝 **Para publicar o livro:** Consulte o [Guia Rápido (QUICK_START.md)](QUICK_START.md)  
+> 📝 **To publish the book:** See the [Quick Start Guide (QUICK_START.md)](QUICK_START.md)
+
 ### Download het boek / Download the book
 
 📖 **Nederlandse editie / Dutch edition**
